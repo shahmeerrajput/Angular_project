@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Creative</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="col-lg-4 offset-lg-10">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link disabled" >New User?</a>
+        </li>
+        <li class="nav-item">
+          <a 
+          class="nav-link active" 
+          style=" color: blue;" 
+          href="#" 
+          (click)="onSwitchMode()"
+          >Sign Up</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+</div>
+</div>
+<div class="row mt-5">
+    <div class="col-lg-6">
+        <img src="\assets\images\image.jpg" class="rounded float-left " alt="...">
+    </div>
+    <div class="col-lg-6">
+        <p class="h1">{{isLoginMode?'Welcome Back!' : 'Welcome'}}</p>
+        <p class="h4" style="color: gray;"><small>{{isLoginMode?'Login To Continue' : 'Sign up To Continue'}}</small></p>
+        <div class="alert alert-danger" *ngIf="error"> 
+          {{error}}
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mt-5">
+              <div class="input-group input-group-lg">
+                <span class="input-group-prepend">
+                  <div class="input-group-text bg-transparent border-right-0">  <i class="fa fa-user" aria-hidden="true"></i></div>
+                  <input
+                   type="text" 
+                   formControlName="email"
+                   class="form-control" 
+                   placeholder="Username@gmail.com" 
+                   id="email"
+                   >
+                </span>
+              </div>
+              <span 
+                   *ngIf = "!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
+                   class="help-back">
+                  Please enter a valid email!
+                  </span> 
+        </div>  
+        <div class="input-group input-group-lg">
+              <span class="input-group-prepend">
+                <div class="input-group-text bg-transparent border-right-0"> <i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
+                <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Password"
+                formControlName="password"
+                id = "password" >
+              </span>
+               <span 
+                   *ngIf = "!loginForm.get('password')?.valid && loginForm.get('password')?.touched "
+                    class="help-back">
+                    Password length must be greater than 8 charaters
+                  </span>
+        </div>
+        <div class="row mt-5 ml-1">
+              <button 
+              type="submit" 
+              class="btn btn-primary btn-md" 
+              style=" padding: 0px 42px;"
+              [disabled]="!loginForm.valid">{{isLoginMode ? 'LOGIN' : 'SIGNUP'}}</button> 
+              <a class="nav-link disabled ml-5" >{{isLoginMode ? 'FORGET PASSWORD?' : 'SET STRONG PASSWORD!'}}</a>
+      </div>
+    </form>
+  </div>
+</div>

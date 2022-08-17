@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <div *ngIf="!createPost">
+            <p class="h1" style="text-align:center ;">CREATE POST</p>
+            <button class="btn btn-primary" type="button" (click)="createpost()">Create New Post</button>
+        </div>
+        <div *ngIf="createPost">
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-group">
+                <p class="h1" style="text-align:center ;">POST CREATE</p>
+                <label for="Image">Image URL</label>
+                <input 
+                type="text"
+                class="form-control" 
+                id="Image" 
+                placeholder="Enter Image URL"
+                ngModel
+                name="Image">
+              </div>
+            <div class="form-group">
+              <label for="title">Post Title</label>
+              <input 
+              type="text" 
+              class="form-control" 
+              id="title"  
+              placeholder="Enter Title"
+              ngModel
+              name="title">
+            </div>
+            <div class="form-group">
+              <label for="Content">Content</label>
+              <input 
+              type="text" 
+              class="form-control" 
+              id="Content" 
+              placeholder="Enter Content"
+              ngModel
+              name="Content">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-danger ml-2" (click)="createpost()">Back</button>
+             </div>    
+                </div>
+          </form>
+        </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <p class="h1" style="text-align:center;">CURRENT POST</p>
+        <div class="col-md-12 offset-md-4 ">
+            <p *ngIf="loadedPost.length < 1">No Post Available!</p>
+            <div *ngIf="loadedPost.length >= 1">
+            <div class="card" style="width: 30rem;"  *ngFor="let post of loadedPost">
+                <img 
+                src={{post.Image}} 
+                class="card-img-top"  
+                alt="Responsive image"
+                width = "400" 
+                height = "400">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.title}}</h5>
+                  <p class="card-text">{{post.Content}}</p>
+                  <div class="row">
+                  <div class="col-md-10">
+                    <button type="button" (click)="createLike()"><i class="fa fa-thumbs-o-up" aria-hidden="true" > 5</i></button>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="button" (click)="createComment()"><i class="fa fa-comment" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
