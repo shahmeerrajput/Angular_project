@@ -66,10 +66,11 @@
                   <p class="card-text">{{post.Content}}</p>
                   <div class="row">
                   <div class="col-md-10">
-                    <button type="button" (click)="createLike()"><i class="fa fa-thumbs-o-up" aria-hidden="true" > 5</i></button>
+                    <button [routerLink]="['/home/'+ post.key]" type="button" (click)="likedButton()"><i class="fa fa-thumbs-o-up" aria-hidden="true">{{like}}</i></button>
+                    
                   </div>
                   <div class="col-md-2">
-                    <button type="button" (click)="createComment()"><i class="fa fa-comment" aria-hidden="true"></i></button>
+                    <button [routerLink]="['/comment/'+ post.key]" type="button"><i class="fa fa-comment" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 </div>

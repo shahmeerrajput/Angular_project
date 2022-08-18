@@ -14,7 +14,16 @@ export interface AuthResponseData{
 export interface Authfetch{
     Image:string,
     title:string,
-    Content: string
+    Content: string,
+    key?:string
+}
+export interface AuthComment{
+    comment: string,
+    id:string
+}
+export interface AuthLike{
+    like: number,
+    id:string
 }
 
 @Injectable({providedIn:"root"})
@@ -49,12 +58,20 @@ export class PostService {
         return this.http.get<{[key:string]:Authfetch}>('https://ng-complete-guide-2ed00-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json');
     }
 
-    postComment(Content:string)
+    postComment(postData:{comment:string,id:string})
     {
         return this.http.post<{name:string}>('https://ng-complete-guide-2ed00-default-rtdb.asia-southeast1.firebasedatabase.app/postscomment.json'
-        ,Content);
+        ,postData);
     }
     fetchComment(){
-        return this.http.get<{content:string}>('https://ng-complete-guide-2ed00-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json');
+        return this.http.get<{[key:string]:AuthComment}>('https://ng-complete-guide-2ed00-default-rtdb.asia-southeast1.firebasedatabase.app/postscomment.json');
+    }
+    postLike(postData:{like:number,id:string})
+    {
+        return this.http.post<{name:string}>('https://ng-complete-guide-2ed00-default-rtdb.asia-southeast1.firebasedatabase.app/postsLike.json'
+        ,postData);
+    }
+    fetchLike(){
+        return this.http.get<{[key:string]:AuthLike}>('https://ng-complete-guide-2ed00-default-rtdb.asia-southeast1.firebasedatabase.app/postsLike.json');
     }
 }

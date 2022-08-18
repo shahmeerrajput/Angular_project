@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-        <div *ngIf="!Comment">
+        <div *ngIf="!Comment_toggle">
             <p class="h1" style="text-align:center ;">CREATE COMMENT</p>
             <button class="btn btn-primary" type="button" (click)="createcomment()">Create New Comment</button>
         </div>
-        <div *ngIf="Comment">
+        <div *ngIf="Comment_toggle">
         <form (ngSubmit)="onSubmit(form)" #form="ngForm">
             <div class="form-group">
               <label for="Content">Comment</label>
@@ -29,15 +29,17 @@
     <hr>
     <div class="row">
         <div class="col-md-12">            
-            <div class="card" style="width: 18rem;">
+            <p *ngIf="loadedPost.length < 1">No Comment Available!</p>
+            <div *ngIf="loadedPost.length >= 1">
+            <div class="card" style="width: 18rem; background-color:bisque;"  *ngFor="let posts of loadedPost">
+                <div *ngIf="posts.id == user_id.id">
                 <div class="card-body">
                     <h5 class="card-title">Comments</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text"> post.comment</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <p class="card-text"> {{posts.comment}}</p>
                 </div>
             </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute,Params } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { PostService } from '../post.service';
+import { PostService,AuthComment } from '../post.service';
 
 @Component({
   selector: 'app-comment',
@@ -9,29 +10,37 @@ import { PostService } from '../post.service';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-  Comment = false;
-  loadedPost: string[]=[];
-  constructor(private post:PostService) { }
+  Comment_toggle = false;
+  loadedPost:AuthComment[] = [];
+  user_id : {id:string};
+  constructor(private post:PostService,
+              private route:ActivatedRoute) { }
+
 
   ngOnInit(){
-    this.post.fetchComment().pipe(map(resdata=>{
-      const postArray: string[] = [];
-      for(const index in resdata){
-          postArray.push(index);
+    this.user_id = {
+      id:this.route.snapshot.params['id']
+    };
+    this.post.fetchComment().pipe(map((resdata:{[key:string]: AuthComment})=>{
+      const postArray:AuthComment[] = [];
+      for(const key in resdata){
+        if(resdata.hasOwnProperty(key)){
+          postArray.push({...resdata[key]});
+        }
       }
       return postArray;  
-    })).subscribe(post=>{
-      console.log(post)
+    })
+    ).subscribe(post=>{
       this.loadedPost = post;
     });
   }
   createcomment(){
-  this.Comment = !this.Comment;
+  this.Comment_toggle = !this.Comment_toggle;
   }
   onSubmit(form:NgForm){
-    const value = form.value.Comment;
-    // this.post.postComment(value).subscribe(resData => {
-    //   console.log(resData)});
-    console.log(value);
+    const comment = form.value.Comment;
+    let id = this.user_id.id;
+    this.post.postComment({comment,id}).subscribe(resData => {
+    console.log(resData)});
   }
 }

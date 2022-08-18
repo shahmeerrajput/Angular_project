@@ -13,7 +13,8 @@ import { CommentComponent } from './comment/comment.component';
 const appRoutes:Routes =[
   { path:'', component:LoginFormComponent},
   { path:'home',component:HomePageComponent},
-  { path:'comment',component:CommentComponent}
+  { path:'comment/:id',component:CommentComponent},
+  { path:'home/:id',component:HomePageComponent}
 ];
 
 @NgModule({
