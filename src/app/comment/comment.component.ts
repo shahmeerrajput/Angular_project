@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute,Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { PostService,AuthComment } from '../post.service';
 
@@ -18,9 +18,6 @@ export class CommentComponent implements OnInit {
 
 
   ngOnInit(){
-    
-  }
-  ngDoCheck(){
     this.user_id = {
       id:this.route.snapshot.params['id']
     };

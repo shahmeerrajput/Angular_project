@@ -25,15 +25,6 @@ export class HomePageComponent implements OnInit {
     this.user_id = {
       id:this.route_user.snapshot.params['id']
     };
-    
-    
-    
-
-
-    
-  }
-
-  ngDoCheck(){
     this.post.fetchLike().pipe(map(resdata=>{
       const postArray:AuthLike[] = [];
       for(const key in resdata){
@@ -61,8 +52,11 @@ export class HomePageComponent implements OnInit {
     })).subscribe(post=>{
       console.log(post)
       this.loadedPost = post;
-    });
+    });    
+
   }
+
+
   createpost(){
     this.createPost = !this.createPost;
   }
