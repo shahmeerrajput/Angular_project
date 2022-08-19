@@ -26,6 +26,14 @@ export class HomePageComponent implements OnInit {
       id:this.route_user.snapshot.params['id']
     };
     
+    
+    
+
+
+    
+  }
+
+  ngDoCheck(){
     this.post.fetchLike().pipe(map(resdata=>{
       const postArray:AuthLike[] = [];
       for(const key in resdata){
@@ -40,7 +48,6 @@ export class HomePageComponent implements OnInit {
       this.last_like = this.loadedLike[this.loadedLike.length-1];
       this.like = this.last_like.like;
     });
-    
 
 
     this.post.fetchdata().pipe(map(resdata=>{
@@ -56,7 +63,6 @@ export class HomePageComponent implements OnInit {
       this.loadedPost = post;
     });
   }
-
   createpost(){
     this.createPost = !this.createPost;
   }

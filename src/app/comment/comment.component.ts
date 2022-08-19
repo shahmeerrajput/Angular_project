@@ -18,6 +18,9 @@ export class CommentComponent implements OnInit {
 
 
   ngOnInit(){
+    
+  }
+  ngDoCheck(){
     this.user_id = {
       id:this.route.snapshot.params['id']
     };
