@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+
+<button class="btn btn-default cursor-pointer"  type="button" (click)="likedButton()"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+<div class="row">
+    <div class="col-md-12">            
+        <p *ngIf="loadedLike.length < 1">No Like Available!</p>
+        <div *ngIf="loadedLike.length >= 1">
+        <div class="card" style="width: 18rem; background-color:bisque;"  *ngFor="let posts of loadedLike">
+            <div *ngIf="posts.id == user_id.id">
+            <div class="card-body">
+                <h5 class="card-title">Likes</h5>
+                <p class="card-text"> {{posts.like}}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>

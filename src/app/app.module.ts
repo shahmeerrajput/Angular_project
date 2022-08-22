@@ -8,13 +8,14 @@ import {HttpClientModule} from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component'
 import {  RouterModule, Routes } from '@angular/router';
 import { CommentComponent } from './comment/comment.component';
+import { LikesComponent } from './likes/likes.component';
 
 
 const appRoutes:Routes =[
   { path:'', component:LoginFormComponent},
   { path:'home',component:HomePageComponent},
   { path:'comment/:id',component:CommentComponent},
-  { path:'home/:id',component:HomePageComponent}
+  { path:'like/:id',component:LikesComponent}
 ];
 
 @NgModule({
@@ -22,7 +23,8 @@ const appRoutes:Routes =[
     AppComponent,
     LoginFormComponent,
     HomePageComponent,
-    CommentComponent
+    CommentComponent,
+    LikesComponent
   ],
   imports: [
     BrowserModule,
