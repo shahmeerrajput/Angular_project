@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-md-12">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="submit" class="btn btn-danger ml-2" (click)="createpost()">Back</button>
+            <button type="button" class="btn btn-danger ml-2" (click)="createpost()">Back</button>
              </div>    
                 </div>
           </form>
@@ -65,12 +65,11 @@
                   <h5 class="card-title">{{post.title}}</h5>
                   <p class="card-text">{{post.Content}}</p>
                   <div class="row">
-                  <div class="col-md-10">
-                    <button [routerLink]="['/home/'+ post.key]" type="button" (click)="likedButton()"><i class="fa fa-thumbs-o-up" aria-hidden="true">{{like}}</i></button>
-                    
+                  <div class="col-md-10" >
+                    <button class="btn btn-default cursor-pointer" [routerLink]="['/like/'+ post.key]" type="button"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
                   </div>
                   <div class="col-md-2">
-                    <button [routerLink]="['/comment/'+ post.key]" type="button"><i class="fa fa-comment" aria-hidden="true"></i></button>
+                    <button class="btn btn-default cursor-pointer" [routerLink]="['/comment/'+ post.key]" type="button"><i class="fa fa-comment" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 </div>
